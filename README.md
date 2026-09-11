@@ -21,6 +21,9 @@ impala-profile-parser \
 결과는 `local/output/result.parquet`입니다. **입력 profile 레코드 한 건당 한 행**이며,
 동일 query ID의 여러 스냅샷과 중복 행도 보존합니다. 재실행하면 입력 전체로 결과를 교체합니다.
 
+운영 로그와 변환 결과는 Git에서 제외되는 `local/` 아래에 보관합니다.
+저장소에 포함된 `tests/fixtures/impala-3.4-synthetic.log`는 검증용 합성 데이터입니다.
+
 `--timezone`은 프로파일의 timezone 없는 `Start Time`/`End Time` 문자열에 적용하는
 IANA timezone입니다. 기본은 UTC이며 운영 Impala 서버의 시간대에 맞춰 지정합니다.
 로그 헤더의 epoch 시각에는 영향을 주지 않습니다. 출력 시각은 UTC 밀리초입니다.

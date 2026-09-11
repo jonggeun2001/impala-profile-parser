@@ -55,5 +55,7 @@ durationMilliseconds 1250, resultRows 1이다.
 ## 확인하지 않은 범위
 
 실제 CDP 운영 로그, SP/CHF별 프로파일 차이, 운영 데이터 규모에서의 처리량은
-확인하지 않았다. Linux CI 설정은 포함했지만 원격 저장소가 없어 원격 CI는
-실행하지 않았다. 현재 검증 결과는 로컬 Python 3.9 실행과 합성 fixture에 한정한다.
+확인하지 않았다. 위 검증 결과는 로컬 Python 3.9 실행과 합성 fixture 기준이다.
+
+Linux/Python 3.9 검증은 push와 pull request마다 자동 실행하며,
+실행 결과는 [GitHub Actions](https://github.com/jonggeun2001/impala-profile-parser/actions/workflows/test.yml)에서 확인한다.

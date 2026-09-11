@@ -1,15 +1,54 @@
+# Python environments and build artifacts
 .venv/
+venv/
+env/
 __pycache__/
 *.py[cod]
-.pytest_cache/
-.ruff_cache/
 *.egg-info/
 build/
 dist/
+
+# Test, lint, and coverage caches
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.tox/
+.nox/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+.idea/
+.vscode/
 .serena/
 .superpowers/
-local/
 .DS_Store
+*.swp
+*.swo
+*~
+
+# Operational input, generated output, and local experiments
+local/
+/input/
+/output/
+/profiles/
+/logs/
+*.log
+*.log.*
+*.parquet
+*.parquet.*
+
+# Deliberately synthetic compatibility fixture, safe to version
+!tests/fixtures/impala-3.4-synthetic.log
 .agent/
 .agents/
 /docs/superpowers/
