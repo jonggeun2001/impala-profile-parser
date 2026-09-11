@@ -1,0 +1,7 @@
+include APACHE-IMPALA-LICENSE.txt
+include THIRD-PARTY-NOTICES.md
+include docs/reference/thrift-source.json
+recursive-include docs *.md
+recursive-include scripts *.py *.sh
+recursive-include tests *.py *.log *.md
+include uv.lock

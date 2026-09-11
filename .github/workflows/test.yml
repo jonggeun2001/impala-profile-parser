@@ -1,0 +1,16 @@
+name: Python 3.9
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+      - name: Install
+        run: |
+          python -m venv .venv
+          .venv/bin/python -m pip install . pytest==8.4.2 ruff==0.13.0
+      - name: Verify
+        run: bash scripts/verify-worktree.sh

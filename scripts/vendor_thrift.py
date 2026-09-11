@@ -52,6 +52,7 @@ def main():
     source["modification"] = "Only import namespace rewritten: impala_thrift_gen -> impala_profile_parser.vendor"
     manifest_path.parent.mkdir(parents=True, exist_ok=True)
     manifest_path.write_text(json.dumps(source, indent=2) + "\n")
+    (DEST / "source.json").write_text(json.dumps(source, indent=2) + "\n")
     print("Vendored modules:", ", ".join(sorted(modules)))
 
 
