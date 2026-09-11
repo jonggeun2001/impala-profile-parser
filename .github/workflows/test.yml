@@ -1,8 +1,13 @@
 name: Python 3.9
-on: [push, pull_request]
+on: [push, pull_request, workflow_dispatch]
+
+permissions:
+  contents: read
+
 jobs:
   test:
     runs-on: ubuntu-22.04
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -11,6 +16,57 @@ jobs:
       - name: Install
         run: |
           python -m venv .venv
-          .venv/bin/python -m pip install . pytest==8.4.2 ruff==0.13.0
+          .venv/bin/python -m pip install . pytest==8.4.2 ruff==0.13.0 build==1.2.2.post1
       - name: Verify
         run: bash scripts/verify-worktree.sh
+      - name: Build wheel and source distribution
+        id: package
+        run: |
+          .venv/bin/python -m build
+          .venv/bin/python - <<'PY'
+          import os
+          from importlib.metadata import version
+          from impala_profile_parser import __version__
+
+          assert version("impala-profile-parser") == __version__
+          if os.environ["GITHUB_REF_TYPE"] == "tag":
+              assert os.environ["GITHUB_REF_NAME"] == __version__, "tag/package version mismatch"
+          with open(os.environ["GITHUB_OUTPUT"], "a") as output:
+              output.write("version=" + __version__ + "\n")
+          PY
+      - name: Verify installed wheel outside source tree
+        working-directory: ${{ runner.temp }}
+        run: |
+          python -m venv parser-wheel-env
+          parser-wheel-env/bin/python -m pip install "$GITHUB_WORKSPACE"/dist/*.whl
+          parser-wheel-env/bin/impala-profile-parser \
+            --input "$GITHUB_WORKSPACE/tests/fixtures/impala-3.4-synthetic.log" \
+            --output "$RUNNER_TEMP/parser-wheel-smoke" \
+            --timezone UTC
+          parser-wheel-env/bin/python - <<'PY'
+          import os
+          from importlib.metadata import version
+          import pyarrow.parquet as pq
+
+          table = pq.read_table(os.path.join(os.environ["RUNNER_TEMP"], "parser-wheel-smoke/result.parquet"))
+          assert (table.num_rows, table.num_columns) == (1, 22)
+          assert table.schema.metadata[b"impala.schema.version"] == b"2"
+          assert table.schema.metadata[b"impala.parser.version"].decode() == version("impala-profile-parser")
+          row = table.to_pylist()[0]
+          assert row["queryId"] == "0000000000000001:0000000000000002"
+          assert row["durationMilliseconds"] == 1250
+          assert row["resultRows"] == 1
+          PY
+      - name: Generate checksums
+        working-directory: dist
+        run: sha256sum *.whl *.tar.gz > SHA256SUMS
+      - name: Upload distribution packages
+        uses: actions/upload-artifact@v7
+        with:
+          name: impala-profile-parser-${{ steps.package.outputs.version }}
+          path: |
+            dist/*.whl
+            dist/*.tar.gz
+            dist/SHA256SUMS
+          if-no-files-found: error
+          retention-days: 30

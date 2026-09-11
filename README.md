@@ -103,5 +103,27 @@ uv build
 PyArrow 22는 Python 3.10 이상을 요구하므로 Python 3.9에서는 21을 사용합니다.
 테스트는 pytest 8.4.2이고 전체 해결 결과는 `uv.lock`에 기록합니다.
 
+## CI 다운로드와 릴리스
+
+[GitHub Actions](https://github.com/jonggeun2001/impala-profile-parser/actions/workflows/test.yml)에서
+성공한 실행을 열고 **Artifacts → `impala-profile-parser-<버전>`**을 다운로드합니다.
+ZIP에는 설치용 `.whl`, 소스 배포본 `.tar.gz`, 검증용 `SHA256SUMS`가 들어 있으며
+보관 기간은 30일입니다. 저장소 접근 권한이 있는 GitHub 계정으로 로그인해야 합니다.
+`Run workflow`로 원하는 브랜치의 빌드를 다시 실행할 수도 있습니다.
+
+압축 해제 후 Python 3.9 가상환경에서 설치합니다.
+
+```bash
+python -m pip install ./impala_profile_parser-*.whl
+impala-profile-parser --help
+```
+
+CI는 테스트 후 패키지를 빌드하고 별도 가상환경에 wheel을 설치해 합성 로그 변환까지
+검증한 뒤 업로드합니다. 실제 운영 로그와 Parquet 결과는 배포 패키지에 포함하지 않습니다.
+
+개발 브랜치는 `main`, 릴리스 브랜치는 `release`입니다. 릴리스는 패키지 버전을 명시적으로
+갱신하고 `main → release` PR의 CI가 통과하면 merge commit에 `0.0.1` 형식의
+annotated tag를 달아 푸시합니다. 태그 CI는 태그와 패키지 버전이 일치하는지도 검사합니다.
+
 [검증 기록](docs/development/verification.md) ·
 [오픈소스 출처](THIRD-PARTY-NOTICES.md)

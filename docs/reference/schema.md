@@ -75,7 +75,7 @@ The Arrow schema stores these byte-string metadata keys:
 | Key | Current value | Meaning |
 |---|---|---|
 | `impala.schema.version` | `2` | Column names, order, Arrow types, and nullability contract. |
-| `impala.parser.version` | `0.1.0` | Package version that wrote the file. |
+| `impala.parser.version` | `0.0.1` | Package version that wrote the file. |
 | `impala.mapping.version` | `1` | Profile scope, source counter, and semantic mapping contract. |
 
 Version 2 removes the three unimplemented resource-metric columns from version 1.

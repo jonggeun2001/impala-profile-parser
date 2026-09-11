@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "impala-profile-parser"
-version = "0.1.0"
+version = "0.0.1"
 description = "Convert encoded impalad profile logs to Parquet"
 readme = "README.md"
 license-files = ["APACHE-IMPALA-LICENSE.txt", "THIRD-PARTY-NOTICES.md"]

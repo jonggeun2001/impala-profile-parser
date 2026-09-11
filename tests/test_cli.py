@@ -132,7 +132,7 @@ def test_explicit_symlink_input_is_rejected(tmp_path):
 
 def test_help_version_and_installed_console_script():
     assert cli("--help").returncode == 0
-    assert "0.1.0" in cli("--version").stdout
+    assert "0.0.1" in cli("--version").stdout
     result = subprocess.run([str(Path(sys.executable).parent / "impala-profile-parser"), "--help"], capture_output=True, text=True)
     assert result.returncode == 0, result.stderr
 

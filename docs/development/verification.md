@@ -18,7 +18,7 @@ uv sync --python 3.9 --locked
 bash scripts/verify-worktree.sh
 uv build --quiet
 uv venv --python 3.9 local/wheel-env
-uv pip install --python local/wheel-env/bin/python dist/impala_profile_parser-0.1.0-py3-none-any.whl
+uv pip install --python local/wheel-env/bin/python dist/impala_profile_parser-0.0.1-py3-none-any.whl
 ```
 
 빌드된 wheel을 별도 Python 3.9 환경에 설치한 뒤 소스 디렉터리 밖에서 아래 CLI를
@@ -57,5 +57,8 @@ durationMilliseconds 1250, resultRows 1이다.
 실제 CDP 운영 로그, SP/CHF별 프로파일 차이, 운영 데이터 규모에서의 처리량은
 확인하지 않았다. 위 검증 결과는 로컬 Python 3.9 실행과 합성 fixture 기준이다.
 
-Linux/Python 3.9 검증은 push와 pull request마다 자동 실행하며,
+Linux/Python 3.9 검증은 push와 pull request마다 자동 실행하며 수동 실행도 지원한다.
+테스트 후 wheel/sdist를 빌드하고, 소스 밖 별도 가상환경의 wheel 설치·변환 검증이
+통과하면 패키지와 SHA256 체크섬을 다운로드 가능한 artifact로 30일간 보관한다.
+태그 실행은 패키지 버전과 태그 이름이 일치해야 통과한다.
 실행 결과는 [GitHub Actions](https://github.com/jonggeun2001/impala-profile-parser/actions/workflows/test.yml)에서 확인한다.
