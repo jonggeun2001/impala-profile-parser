@@ -65,14 +65,11 @@ def test_schema_has_fixed_fields_nullability_and_metadata():
             pa.field("resultRowsKind", pa.string()),
             pa.field("resultRowsSource", pa.string()),
             pa.field("cpuMilliseconds", pa.int64()),
-            pa.field("hdfsBytesRead", pa.int64()),
-            pa.field("spillBytesWritten", pa.int64()),
-            pa.field("maxBackendPeakMemoryBytes", pa.int64()),
         ]
     )
     assert SCHEMA.remove_metadata() == expected
     assert SCHEMA.metadata == {
-        b"impala.schema.version": b"1",
+        b"impala.schema.version": b"2",
         b"impala.parser.version": b"0.1.0",
         b"impala.mapping.version": b"1",
     }
@@ -129,9 +126,9 @@ def test_root_summary_info_is_allowed_and_missing_fields_do_not_warn():
     assert row["profileVersion"] == 2
     assert row["parseStatus"] == "OK"
     assert row["warningCount"] == 0
-    assert row["hdfsBytesRead"] is None
-    assert row["spillBytesWritten"] is None
-    assert row["maxBackendPeakMemoryBytes"] is None
+    assert "hdfsBytesRead" not in row
+    assert "spillBytesWritten" not in row
+    assert "maxBackendPeakMemoryBytes" not in row
 
 
 def test_conflicting_summary_metadata_is_null_and_warns_instead_of_last_win():

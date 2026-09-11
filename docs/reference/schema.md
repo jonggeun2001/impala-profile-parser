@@ -14,6 +14,9 @@ validation against real operational logs.
 
 ## Columns
 
+Schema version 2 contains 22 columns. Unimplemented metrics are omitted rather
+than emitted as permanently null columns.
+
 All timestamp columns are Arrow `timestamp[ms, tz=UTC]`. All metric/count
 columns are signed Arrow `int64`; absent metrics remain null and meaningful zero
 values are preserved.
@@ -42,9 +45,6 @@ values are preserved.
 | `resultRowsKind` | string | no | `CLIENT_FETCHED` exactly when `resultRows` is populated. |
 | `resultRowsSource` | string | no | `ImpalaServer/NumRowsFetched` exactly when `resultRows` is populated. |
 | `cpuMilliseconds` | int64 | no | Direct-child `Execution Profile <queryId>/TotalCpuTime` with unit `TIME_NS`, divided by 1,000,000 with sub-millisecond remainder discarded. In Impala versions that emit it, this is the cumulative user-plus-system CPU represented by that counter. It is null when that exact counter is absent; no fragment, instance, average, or aggregated counters are summed. |
-| `hdfsBytesRead` | int64 | no | Currently always null. `TotalBytesRead` is not mapped because it does not prove HDFS-only bytes. |
-| `spillBytesWritten` | int64 | no | Currently always null; no CDP 7.1.7 query-level source has been validated. |
-| `maxBackendPeakMemoryBytes` | int64 | no | Currently always null; no CDP 7.1.7 query-level source has been validated. |
 
 ## Scope, conflicts, and time conversion
 
@@ -74,9 +74,12 @@ The Arrow schema stores these byte-string metadata keys:
 
 | Key | Current value | Meaning |
 |---|---|---|
-| `impala.schema.version` | `1` | Column names, order, Arrow types, and nullability contract. |
+| `impala.schema.version` | `2` | Column names, order, Arrow types, and nullability contract. |
 | `impala.parser.version` | `0.1.0` | Package version that wrote the file. |
 | `impala.mapping.version` | `1` | Profile scope, source counter, and semantic mapping contract. |
+
+Version 2 removes the three unimplemented resource-metric columns from version 1.
+Previously generated files keep their original schema until conversion is rerun.
 
 Mapping evidence: the CDP 7.1.7 component version is published in the
 [Cloudera runtime component table](https://docs.cloudera.com/cdp-private-cloud-base/7.1.7/runtime-release-notes/topics/rt-pvc-data-warehouse-component-versions.html).

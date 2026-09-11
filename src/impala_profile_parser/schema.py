@@ -5,7 +5,7 @@ import pyarrow as pa
 from impala_profile_parser import __version__
 
 
-SCHEMA_VERSION = "1"
+SCHEMA_VERSION = "2"
 MAPPING_VERSION = "1"
 
 
@@ -33,9 +33,6 @@ SCHEMA = pa.schema(
         pa.field("resultRowsKind", pa.string()),
         pa.field("resultRowsSource", pa.string()),
         pa.field("cpuMilliseconds", pa.int64()),
-        pa.field("hdfsBytesRead", pa.int64()),
-        pa.field("spillBytesWritten", pa.int64()),
-        pa.field("maxBackendPeakMemoryBytes", pa.int64()),
     ],
     metadata={
         b"impala.schema.version": SCHEMA_VERSION.encode("ascii"),

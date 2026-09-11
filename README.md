@@ -50,8 +50,8 @@ SQL은 Impala가 기록한 문자열(마스킹되었을 수 있음)을 공백·�
 보장하지 않습니다. 중간 operator의 `RowsReturned`를 합산하지 않습니다.
 
 `cpuMilliseconds`는 query 범위의 `TotalCpuTime`이 TIME_NS 단위로 존재할 때만 채웁니다.
-현재 `hdfsBytesRead`, `spillBytesWritten`, `maxBackendPeakMemoryBytes`는 매핑하지 않아
-null입니다. 없는 지표와 실제 0을 구분합니다. 상세한 필드·출처는 [출력 스키마](docs/reference/schema.md)에 있습니다.
+출력은 구현된 지표만 포함한 22개 컬럼이며 스키마 버전은 `2`입니다.
+원본에 없는 선택 지표와 실제 0을 구분합니다. 상세한 필드·출처는 [출력 스키마](docs/reference/schema.md)에 있습니다.
 
 대상은 CDP Private Cloud Base 7.1.7이며 공식 구성표상 Impala는
 `3.4.0.7.1.7.0-551`입니다. 공개 Apache 3.4 계열 구조와 생성 fixture로 검증합니다.

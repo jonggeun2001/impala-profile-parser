@@ -8,7 +8,7 @@
 - Python 3.9.6: 전체 **102개 테스트 통과** (decoder 60, metrics 20, CLI/output 22).
 - Ruff, `git diff --check`, `uv lock --check` 통과.
 - wheel/sdist 빌드 및 별도 Python 3.9 환경 설치 통과.
-- 소스 밖 CLI 실행 후 Parquet 1행/25컬럼과 기대값 일치 확인.
+- 소스 밖 CLI 실행 후 Parquet 1행/22컬럼(스키마 버전 2)과 기대값 일치 확인.
 - 출력 처리와 전체 코드 독립 리뷰 완료; 발견된 중요 사항 수정 후 재검토 통과.
 
 ## 재현 명령
@@ -33,7 +33,7 @@ cd /tmp
   --timezone UTC
 ```
 
-기대 결과는 25개 컬럼, 1행, queryId `0000000000000001:0000000000000002`,
+기대 결과는 22개 컬럼, 1행, queryId `0000000000000001:0000000000000002`,
 durationMilliseconds 1250, resultRows 1이다.
 
 ## 검증 범위

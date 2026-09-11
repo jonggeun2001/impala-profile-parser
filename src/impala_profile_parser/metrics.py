@@ -230,9 +230,6 @@ def extract_record(
         "resultRowsKind": None,
         "resultRowsSource": None,
         "cpuMilliseconds": None,
-        "hdfsBytesRead": None,
-        "spillBytesWritten": None,
-        "maxBackendPeakMemoryBytes": None,
     }
 
     for column, info_key in _SUMMARY_FIELDS.items():
