@@ -18,7 +18,7 @@ uv sync --python 3.9 --locked
 bash scripts/verify-worktree.sh
 uv build --quiet
 uv venv --python 3.9 local/wheel-env
-uv pip install --python local/wheel-env/bin/python dist/impala_profile_parser-0.1.0-py3-none-any.whl
+uv pip install --python local/wheel-env/bin/python dist/impala_profile_parser-0.0.1-py3-none-any.whl
 ```
 
 빌드된 wheel을 별도 Python 3.9 환경에 설치한 뒤 소스 디렉터리 밖에서 아래 CLI를

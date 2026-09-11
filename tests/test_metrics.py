@@ -70,7 +70,7 @@ def test_schema_has_fixed_fields_nullability_and_metadata():
     assert SCHEMA.remove_metadata() == expected
     assert SCHEMA.metadata == {
         b"impala.schema.version": b"2",
-        b"impala.parser.version": b"0.1.0",
+        b"impala.parser.version": b"0.0.1",
         b"impala.mapping.version": b"1",
     }
 
