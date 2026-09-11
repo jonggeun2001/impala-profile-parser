@@ -1,0 +1,14 @@
+{
+  "version": "4.6.0",
+  "url": "https://files.pythonhosted.org/packages/95/11/5d3b68d4b2ada2ac5023096a5dc590bef72965600ffcadede18934065324/impala_shell-4.6.0.tar.gz",
+  "sha256": "49e1644194f7e6f7de590a36877991bebf53f1a59dd9d7b73a5327895b9ce6fc",
+  "modules": [
+    "ErrorCodes",
+    "ExecStats",
+    "Metrics",
+    "RuntimeProfile",
+    "Status",
+    "Types"
+  ],
+  "modification": "Only import namespace rewritten: impala_thrift_gen -> impala_profile_parser.vendor"
+}

@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+build/
+dist/
+.serena/
+.superpowers/
+local/
+.DS_Store
+.agent/
+.agents/
+/docs/superpowers/

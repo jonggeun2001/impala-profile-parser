@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68,<81"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "impala-profile-parser"
+version = "0.1.0"
+description = "Convert encoded impalad profile logs to Parquet"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = ["thrift==0.16.0", "pyarrow==21.0.0", "tzdata==2025.2"]
+
+[project.scripts]
+impala-profile-parser = "impala_profile_parser.cli:main"
+
+[dependency-groups]
+dev = ["pytest==8.4.2", "ruff==0.13.0"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+target-version = "py39"
+extend-exclude = ["src/impala_profile_parser/vendor"]
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F"]
