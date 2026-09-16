@@ -6,11 +6,10 @@ multiple snapshots of one query remain separate rows. Consumers can use
 `sourceFile` and `sourceLine` to locate a snapshot and `profileLoggedAt` to order
 snapshots. The parser does not deduplicate or merge them.
 
-The mapping targets CDP Private Cloud Base 7.1.7, whose documented Impala
-component is `3.4.0.7.1.7.0-551`. The vendored Impala 4.6 generated Thrift reader
-is used only because older optional fields retain their wire field numbers and
-types. Compatibility with every CDP service pack and hotfix still needs
-validation against real operational logs.
+The parser uses the vendored Apache Impala 4.6.0 generated Thrift reader.
+Wire compatibility is checked using synthetic Apache Impala 3.4 fixtures.
+Compatibility across versions and distributions still needs validation against
+real operational logs.
 
 ## Columns
 
@@ -81,9 +80,7 @@ The Arrow schema stores these byte-string metadata keys:
 Version 2 removes the three unimplemented resource-metric columns from version 1.
 Previously generated files keep their original schema until conversion is rerun.
 
-Mapping evidence: the CDP 7.1.7 component version is published in the
-[Cloudera runtime component table](https://docs.cloudera.com/cdp-private-cloud-base/7.1.7/runtime-release-notes/topics/rt-pvc-data-warehouse-component-versions.html).
-Impala 3.4 source creates the direct-child `ImpalaServer` profile and increments
+Mapping evidence: Impala 3.4 source creates the direct-child `ImpalaServer` profile and increments
 `NumRowsFetched` for client fetches in
 [`client-request-state.cc`](https://github.com/apache/impala/blob/3.4.0/be/src/service/client-request-state.cc).
 The coordinator creates `Execution Profile <queryId>` and exposes

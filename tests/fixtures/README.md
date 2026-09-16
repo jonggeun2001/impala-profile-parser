@@ -14,4 +14,5 @@ Regenerate with `.venv/bin/python scripts/generate_compat_fixture.py`.
 Source schema: https://github.com/apache/impala/blob/3.4.0/common/thrift/RuntimeProfile.thrift
 
 The CLI round-trip test asserts query ID, SQL preservation, client-fetched rows,
-and 1250 ms elapsed time. It does not establish CDP SP/CHF or real log compatibility.
+and 1250 ms elapsed time. It does not establish compatibility with production logs
+or distribution-specific changes.

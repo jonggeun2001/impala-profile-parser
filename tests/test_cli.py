@@ -22,7 +22,7 @@ def profile_line(query_id="1:2"):
     tree = TRuntimeProfileTree(nodes=[
         node("Query (id=" + query_id + ")", 2),
         node("Summary", info={
-            "Impala Version": "impalad version 3.4.0.7.1.7.0-551 RELEASE",
+            "Impala Version": "impalad version 3.4.0 RELEASE",
             "User": "analyst", "Sql Statement": "select\n  1 -- keep whitespace",
             "Start Time": "2026-09-11 10:00:00.123456789",
             "End Time": "2026-09-11 10:00:01.456789000",

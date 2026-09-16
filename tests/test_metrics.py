@@ -81,7 +81,7 @@ def test_extracts_only_query_scopes_and_preserves_sql_exactly():
         "Summary",
         children=1,
         info={
-            "Impala Version": "impalad version 3.4.0.7.1.7.0-551",
+            "Impala Version": "impalad version 3.4.0",
             "User": "alice",
             "Default Db": "analytics",
             "Query Type": "QUERY",
@@ -104,7 +104,7 @@ def test_extracts_only_query_scopes_and_preserves_sql_exactly():
     assert row["sourceFile"] == "logs/profile.log"
     assert row["sourceLine"] == 17
     assert row["profileVersion"] == 1
-    assert row["impalaVersion"] == "impalad version 3.4.0.7.1.7.0-551"
+    assert row["impalaVersion"] == "impalad version 3.4.0"
     assert row["user"] == "alice"
     assert row["defaultDatabase"] == "analytics"
     assert row["statementType"] == "QUERY"

@@ -1,6 +1,6 @@
 # 검증 기록
 
-대상 계약은 Python 3.9 / CDP Private Cloud Base 7.1.7이다.
+검증 기준은 Python 3.9이다.
 로컬 실행 환경은 macOS arm64, CPython 3.9.6, PyArrow 21.0.0, Thrift 0.16.0이다.
 
 ## 최종 결과 (2026-09-11)
@@ -54,7 +54,7 @@ durationMilliseconds 1250, resultRows 1이다.
 
 ## 확인하지 않은 범위
 
-실제 CDP 운영 로그, SP/CHF별 프로파일 차이, 운영 데이터 규모에서의 처리량은
+실제 운영 로그, 버전·배포판별 프로파일 차이, 운영 데이터 규모에서의 처리량은
 확인하지 않았다. 위 검증 결과는 로컬 Python 3.9 실행과 합성 fixture 기준이다.
 
 Linux/Python 3.9 검증은 push와 pull request마다 자동 실행하며 수동 실행도 지원한다.

@@ -1,6 +1,6 @@
 # Impala Profile Parser
 
-Python 3.9 기반으로 CDP 7.1.7의 인코딩된 impalad profile 로그를 Parquet으로 변환하는 로컬 CLI입니다.
+Python 3.9 기반으로 인코딩된 impalad profile 로그를 Parquet으로 변환하는 로컬 CLI입니다.
 
 ## 설치 및 실행
 
@@ -56,11 +56,10 @@ SQL은 Impala가 기록한 문자열(마스킹되었을 수 있음)을 공백·�
 출력은 구현된 지표만 포함한 22개 컬럼이며 스키마 버전은 `2`입니다.
 원본에 없는 선택 지표와 실제 0을 구분합니다. 상세한 필드·출처는 [출력 스키마](docs/reference/schema.md)에 있습니다.
 
-대상은 CDP Private Cloud Base 7.1.7이며 공식 구성표상 Impala는
-`3.4.0.7.1.7.0-551`입니다. 공개 Apache 3.4 계열 구조와 생성 fixture로 검증합니다.
-**실제 CDP 운영 로그와 SP/CHF별 변경은 아직 검증하지 않았습니다.**
-Thrift reader에는 기존 필드를 유지하는 Apache 4.6.0 생성 코드를 포함했으며,
-이는 대상 Impala 버전이 4.6이라는 뜻이 아닙니다. 실행 시 shell/컴파일러 설치는 필요 없습니다.
+공개 Apache Impala 3.4 계열 구조와 합성 fixture로 검증합니다.
+**실제 운영 로그와 버전·배포판별 프로파일 차이는 아직 검증하지 않았습니다.**
+Thrift reader에는 Apache Impala 4.6.0 생성 코드를 포함합니다.
+실행 시 shell/컴파일러 설치는 필요 없습니다.
 
 ## 실패 처리
 

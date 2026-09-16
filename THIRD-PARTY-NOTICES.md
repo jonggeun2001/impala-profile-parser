@@ -18,9 +18,6 @@ Apache Impala is licensed under Apache License 2.0. The complete upstream source
 distribution license notices are preserved in [APACHE-IMPALA-LICENSE.txt](APACHE-IMPALA-LICENSE.txt).
 The upstream archive does not contain a separate top-level NOTICE file.
 
-The newer generated reader is used for wire compatibility; our target remains
-CDP 7.1.7 / Impala 3.4.0. No Cloudera proprietary binaries or libraries are bundled.
-
 ## Runtime dependencies
 
 - Apache Thrift 0.16.0: Apache License 2.0, https://thrift.apache.org/

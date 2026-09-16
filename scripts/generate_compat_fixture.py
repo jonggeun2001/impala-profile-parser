@@ -2,7 +2,7 @@
 
 Field IDs/types follow Apache Impala tag 3.4.0 common/thrift/RuntimeProfile.thrift.
 Uses the Apache Thrift compact writer directly, no generated or production types.
-Run under the development environment. This is not a captured CDP production log.
+Run under the development environment. This is not a captured production log.
 """
 
 import base64
