@@ -30,7 +30,10 @@ coverage.xml
 .idea/
 .vscode/
 .serena/
+.agent/
+.agents/
 .superpowers/
+/docs/superpowers/
 .DS_Store
 *.swp
 *.swo
@@ -49,6 +52,3 @@ local/
 
 # Deliberately synthetic compatibility fixture, safe to version
 !tests/fixtures/impala-3.4-synthetic.log
-.agent/
-.agents/
-/docs/superpowers/

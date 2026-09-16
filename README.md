@@ -125,5 +125,6 @@ CI는 테스트 후 패키지를 빌드하고 별도 가상환경에 wheel을 �
 갱신하고 `main → release` PR의 CI가 통과하면 merge commit에 `0.0.1` 형식의
 annotated tag를 달아 푸시합니다. 태그 CI는 태그와 패키지 버전이 일치하는지도 검사합니다.
 
+[출력 스키마](docs/reference/schema.md) ·
 [검증 기록](docs/development/verification.md) ·
 [오픈소스 출처](THIRD-PARTY-NOTICES.md)
